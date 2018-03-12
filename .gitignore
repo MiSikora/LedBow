@@ -2,3 +2,7 @@
 .piolibdeps
 .clang_complete
 .gcc-flags.json
+
+# Platform IO keeps on creating these files.
+/lib/readme.txt
+.travis.yml
