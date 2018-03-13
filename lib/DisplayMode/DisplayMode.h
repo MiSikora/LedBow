@@ -1,5 +1,5 @@
-#ifndef __INC_DISPLAYMODE_H
-#define __INC_DISPLAYMODE_H
+#ifndef __INC_LEDBOW_DISPLAYMODE_H
+#define __INC_LEDBOW_DISPLAYMODE_H
 
 enum DisplayMode {
   NONE,
@@ -8,7 +8,7 @@ enum DisplayMode {
   BLUE
 };
 
-DisplayMode& operator++(DisplayMode& mode) {
+inline DisplayMode& operator++(DisplayMode& mode) {
   if (mode == BLUE) {
     mode = NONE;
   } else {
@@ -17,7 +17,7 @@ DisplayMode& operator++(DisplayMode& mode) {
   return mode;
 }
 
-DisplayMode operator++(DisplayMode& mode, int) {
+inline DisplayMode operator++(DisplayMode& mode, int) {
   DisplayMode rVal = mode;
   ++mode;
   return rVal;
