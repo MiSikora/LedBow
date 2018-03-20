@@ -11,6 +11,7 @@ public:
 
 private:
   volatile bool interrupted;
+  volatile unsigned long lastInterruptTime;
   DisplayMode mode;
 };
 

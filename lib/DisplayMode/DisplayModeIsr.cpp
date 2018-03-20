@@ -1,8 +1,10 @@
 #include <DisplayModeIsr.h>
+#include <Arduino.h>
 
 DisplayModeIsr::DisplayModeIsr() {
   interrupted = false;
   mode = NONE;
+  lastInterruptTime = 0;
 }
 
 DisplayMode DisplayModeIsr::currentMode() {
@@ -14,5 +16,9 @@ DisplayMode DisplayModeIsr::currentMode() {
 }
 
 void DisplayModeIsr::onInterrupt() {
-  interrupted = true;
+  unsigned long interruptTime = millis();
+  if (interruptTime - lastInterruptTime > 200) {
+    interrupted = true;
+  }
+  lastInterruptTime = interruptTime;
 }
