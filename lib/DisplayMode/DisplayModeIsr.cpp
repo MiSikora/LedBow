@@ -1,12 +1,6 @@
 #include <DisplayModeIsr.h>
 #include <Arduino.h>
 
-DisplayModeIsr::DisplayModeIsr() {
-  interrupted = false;
-  mode = NONE;
-  lastInterruptTime = 0;
-}
-
 DisplayMode DisplayModeIsr::currentMode() {
   if (interrupted) {
     interrupted = false;

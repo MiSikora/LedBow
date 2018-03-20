@@ -5,7 +5,11 @@
 
 class DisplayModeIsr {
 public:
-  DisplayModeIsr();
+  DisplayModeIsr() {
+    interrupted = false;
+    mode = NONE;
+    lastInterruptTime = 0;
+  }
   DisplayMode currentMode();
   void onInterrupt();
 
