@@ -9,7 +9,7 @@ public:
 
 protected:
   void processLeds(CRGB leds[]) {
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < ledStripSize; i++) {
       leds[i] = color;
     }
   }
