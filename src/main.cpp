@@ -23,6 +23,10 @@ void setup() {
   modeSelector.addProcessor(RED, new SingleColorProcessor(NUM_LEDS, CHSV(0, 255, 255)));
   modeSelector.addProcessor(GREEN, new SingleColorProcessor(NUM_LEDS, CHSV(85, 255, 255)));
   modeSelector.addProcessor(BLUE, new SingleColorProcessor(NUM_LEDS, CHSV(170, 255, 255)));
+  modeSelector.addProcessor(VIOLET, new SingleColorProcessor(NUM_LEDS, CHSV(191, 255, 255)));
+  modeSelector.addProcessor(YELLOW, new SingleColorProcessor(NUM_LEDS, CHSV(43, 255, 255)));
+  modeSelector.addProcessor(CYAN, new SingleColorProcessor(NUM_LEDS, CHSV(128, 255, 255)));
+  modeSelector.addProcessor(WHITE, new SingleColorProcessor(NUM_LEDS, CHSV(0, 0, 255)));
 }
 
 void loop() {
