@@ -5,14 +5,14 @@ enum DisplayMode {
   NONE,
   RED,
   GREEN,
-  BLUE
+  BLUE,
+  FINAL_DISPLAY_MODE_ENTRY
 };
 
 inline DisplayMode& operator++(DisplayMode& mode) {
-  if (mode == BLUE) {
+  mode = static_cast<DisplayMode>(mode + 1);
+  if (mode == FINAL_DISPLAY_MODE_ENTRY) {
     mode = NONE;
-  } else {
-    mode = static_cast<DisplayMode>(mode + 1);
   }
   return mode;
 }
