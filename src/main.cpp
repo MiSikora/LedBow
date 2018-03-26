@@ -1,6 +1,7 @@
 #include <DisplayModeIsr.h>
 #include <DisplayModeSelector.h>
 #include <SingleColorProcessor.h>
+#include <RainbowColorProcessor.h>
 
 #define BUTTON_PIN 2
 
@@ -27,6 +28,7 @@ void setup() {
   modeSelector.addProcessor(YELLOW, new SingleColorProcessor(NUM_LEDS, CHSV(43, 255, 255)));
   modeSelector.addProcessor(CYAN, new SingleColorProcessor(NUM_LEDS, CHSV(128, 255, 255)));
   modeSelector.addProcessor(WHITE, new SingleColorProcessor(NUM_LEDS, CHSV(0, 0, 255)));
+  modeSelector.addProcessor(RAINBOW, new RainbowColorProcessor(NUM_LEDS, 0, 255));
 }
 
 void loop() {

@@ -10,6 +10,7 @@ enum DisplayMode {
   YELLOW,
   CYAN,
   WHITE,
+  RAINBOW,
   FINAL_DISPLAY_MODE_ENTRY
 };
 
