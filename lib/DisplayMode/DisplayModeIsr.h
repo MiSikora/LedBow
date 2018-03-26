@@ -7,11 +7,25 @@ class DisplayModeIsr {
 public:
   DisplayModeIsr() {
     interrupted = false;
-    mode = NONE;
     lastInterruptTime = 0;
+    mode = NONE;
   }
-  DisplayMode currentMode();
-  void onInterrupt();
+
+  void onInterrupt(unsigned long interruptTime) {
+    if (interruptTime - lastInterruptTime > 200) {
+      lastInterruptTime = interruptTime;
+      interrupted = true;
+    }
+  }
+
+  DisplayMode currentMode() {
+    if (interrupted) {
+      interrupted = false;
+      mode++;
+    }
+    return mode;
+  }
+
 
 private:
   volatile bool interrupted;

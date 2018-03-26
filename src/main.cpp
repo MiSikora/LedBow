@@ -15,11 +15,10 @@ SingleColorProcessor blueProcessor = SingleColorProcessor(NUM_LEDS, CHSV(170, 25
 CRGB leds[NUM_LEDS];
 
 void onInterrupt() {
-  modeIsr.onInterrupt();
+  modeIsr.onInterrupt(millis());
 }
 
 void setup() {
-  Serial.begin(57600);
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), onInterrupt, RISING);
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
