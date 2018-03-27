@@ -13,6 +13,7 @@ enum DisplayMode {
   RAINBOW,
   FOUNTAIN,
   NEON,
+  SNAKE,
   FINAL_DISPLAY_MODE_ENTRY
 };
 
