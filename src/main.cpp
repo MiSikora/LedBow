@@ -2,11 +2,12 @@
 #include <DisplayModeSelector.h>
 #include <SingleColorProcessor.h>
 #include <RainbowColorProcessor.h>
+#include <FountainDisplayProcessor.h>
 
 #define BUTTON_PIN 2
 
 #define LED_PIN 6
-#define NUM_LEDS 30
+#define NUM_LEDS 31
 
 CRGB leds[NUM_LEDS];
 DisplayModeIsr modeIsr = DisplayModeIsr();
@@ -29,6 +30,7 @@ void setup() {
   modeSelector.addProcessor(CYAN, new SingleColorProcessor(NUM_LEDS, CHSV(128, 255, 255)));
   modeSelector.addProcessor(WHITE, new SingleColorProcessor(NUM_LEDS, CHSV(0, 0, 255)));
   modeSelector.addProcessor(RAINBOW, new RainbowColorProcessor(NUM_LEDS, 0, 255));
+  modeSelector.addProcessor(FOUNTAIN, new FountainDisplayProcessor(NUM_LEDS, 2, CHSV(85, 255, 255), CHSV(191, 255, 255)));
 }
 
 void loop() {

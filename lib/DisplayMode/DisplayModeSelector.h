@@ -16,7 +16,6 @@ public:
 
   DisplayModeProcessor* selectProcessor(DisplayMode mode) {
     int index = static_cast<int>(mode);
-    Serial.println(index);
     return processors[index];
   }
 
