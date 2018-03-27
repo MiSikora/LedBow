@@ -1,11 +1,11 @@
-#ifndef __INC_LEDBOW_RAINBOWCOLORPROCESSOR_H
-#define __INC_LEDBOW_RAINBOWCOLORPROCESSOR_H
+#ifndef __INC_LEDBOW_RAINBOWPROCESSOR_H
+#define __INC_LEDBOW_RAINBOWPROCESSOR_H
 
 #include <DisplayModeProcessor.h>
 
-class RainbowColorProcessor : public DisplayModeProcessor {
+class RainbowProcessor : public DisplayModeProcessor {
 public:
-  RainbowColorProcessor(int ledStripSize, uint8_t start, uint8_t end) : DisplayModeProcessor(ledStripSize) {
+  RainbowProcessor(int ledStripSize, uint8_t start, uint8_t end) : DisplayModeProcessor(ledStripSize) {
     rainbow = new CHSV[ledStripSize];
     int range = 0;
     if (end > start) {

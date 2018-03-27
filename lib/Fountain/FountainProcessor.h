@@ -1,12 +1,12 @@
-#ifndef __INC_LEDBOW_FOUNTAINCOLORPROCESSOR_H
-#define __INC_LEDBOW_FOUNTAINCOLORPROCESSOR_H
+#ifndef __INC_LEDBOW_FOUNTAINPROCESSOR_H
+#define __INC_LEDBOW_FOUNTAINPROCESSOR_H
 
 #include <DisplayModeProcessor.h>
 #include <Fountain.h>
 
-class FountainDisplayProcessor : public DisplayModeProcessor {
+class FountainProcessor : public DisplayModeProcessor {
 public:
-  FountainDisplayProcessor(int ledStripSize, int fountainCount, CHSV firstColor, CHSV secondColor) : DisplayModeProcessor(ledStripSize), fountainCount(fountainCount) {
+  FountainProcessor(int ledStripSize, int fountainCount, CHSV firstColor, CHSV secondColor) : DisplayModeProcessor(ledStripSize), fountainCount(fountainCount) {
     fountains = new Fountain*[fountainCount];
     int length = ledStripSize / fountainCount;
     int lengthRemainder = ledStripSize % fountainCount;

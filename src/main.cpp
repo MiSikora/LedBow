@@ -1,8 +1,9 @@
 #include <DisplayModeIsr.h>
 #include <DisplayModeSelector.h>
 #include <SingleColorProcessor.h>
-#include <RainbowColorProcessor.h>
-#include <FountainDisplayProcessor.h>
+#include <RainbowProcessor.h>
+#include <FountainProcessor.h>
+#include <NeonProcessor.h>
 
 #define BUTTON_PIN 2
 
@@ -29,8 +30,9 @@ void setup() {
   modeSelector.addProcessor(YELLOW, new SingleColorProcessor(NUM_LEDS, CHSV(43, 255, 255)));
   modeSelector.addProcessor(CYAN, new SingleColorProcessor(NUM_LEDS, CHSV(128, 255, 255)));
   modeSelector.addProcessor(WHITE, new SingleColorProcessor(NUM_LEDS, CHSV(0, 0, 255)));
-  modeSelector.addProcessor(RAINBOW, new RainbowColorProcessor(NUM_LEDS, 0, 255));
-  modeSelector.addProcessor(FOUNTAIN, new FountainDisplayProcessor(NUM_LEDS, 2, CHSV(85, 255, 255), CHSV(191, 255, 255)));
+  modeSelector.addProcessor(RAINBOW, new RainbowProcessor(NUM_LEDS, 0, 255));
+  modeSelector.addProcessor(FOUNTAIN, new FountainProcessor(NUM_LEDS, 2, CHSV(85, 255, 255), CHSV(191, 255, 255)));
+  modeSelector.addProcessor(NEON, new NeonProcessor(NUM_LEDS, 2, 170, 120));
 }
 
 void loop() {
