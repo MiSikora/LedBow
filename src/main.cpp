@@ -32,7 +32,7 @@ void setup() {
   CHSV yellow = CHSV(43, 255, 255);
   CHSV cyan = CHSV(128, 255, 255);
   CHSV white = CHSV(0, 0, 255);
-  CHSV colors[] = { red, yellow, green, cyan, blue, violet };
+  CHSV snakeColors[] = { red, yellow, green, cyan, blue, violet };
 
   modeSelector.addProcessor(NONE, new SingleColorProcessor(NUM_LEDS, black));
   modeSelector.addProcessor(RED, new SingleColorProcessor(NUM_LEDS, red));
@@ -45,7 +45,7 @@ void setup() {
   modeSelector.addProcessor(RAINBOW, new RainbowProcessor(NUM_LEDS, 0, 255));
   modeSelector.addProcessor(FOUNTAIN, new FountainProcessor(NUM_LEDS, 2, green, violet));
   modeSelector.addProcessor(NEON, new NeonProcessor(NUM_LEDS, 2, blue.h, 120));
-  modeSelector.addProcessor(SNAKE, new SnakeProcessor(NUM_LEDS, colors, 6));
+  modeSelector.addProcessor(SNAKE, new SnakeProcessor(NUM_LEDS, snakeColors, 6));
 }
 
 void loop() {
