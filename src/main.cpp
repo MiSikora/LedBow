@@ -4,6 +4,7 @@
 #include <FountainProcessor.h>
 #include <NeonProcessor.h>
 #include <SnakeProcessor.h>
+#include <StroboscopeProcessor.h>
 
 #define BUTTON_PIN 2
 
@@ -45,14 +46,20 @@ void setup() {
   modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, 40, blue.h, 120));
   modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, 20, blue.h, 120));
 
-  SnakeProcessor* snakeProcessor = new SnakeProcessor(NUM_LEDS);
-  snakeProcessor->addColor(red);
-  snakeProcessor->addColor(yellow);
-  snakeProcessor->addColor(green);
-  snakeProcessor->addColor(cyan);
-  snakeProcessor->addColor(blue);
-  snakeProcessor->addColor(violet);
-  modeSelector.addProcessor(static_cast<DisplayModeProcessor*>(snakeProcessor));
+  SnakeProcessor* snake = new SnakeProcessor(NUM_LEDS);
+  snake->addColor(red);
+  snake->addColor(yellow);
+  snake->addColor(green);
+  snake->addColor(cyan);
+  snake->addColor(blue);
+  snake->addColor(violet);
+  modeSelector.addProcessor(static_cast<DisplayModeProcessor*>(snake));
+
+  StroboscopeProcessor* stroboscope = new StroboscopeProcessor(NUM_LEDS);
+  stroboscope->addColor(red);
+  stroboscope->addColor(green);
+  stroboscope->addColor(blue);
+  modeSelector.addProcessor(static_cast<DisplayModeProcessor*>(stroboscope));
 }
 
 void loop() {
