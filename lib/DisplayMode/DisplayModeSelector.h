@@ -14,7 +14,7 @@ public:
 
   void addProcessor(DisplayModeProcessor* processor) {
     DisplayModeProcessor** temp = new DisplayModeProcessor*[processorCount + 1];
-    for (int i = 0; i < (processorCount); i++) {
+    for (int i = 0; i < processorCount; i++) {
       temp[i] = processors[i];
     }
     temp[processorCount] = processor;

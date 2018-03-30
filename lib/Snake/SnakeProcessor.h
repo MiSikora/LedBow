@@ -5,10 +5,23 @@
 
 class SnakeProcessor : public DisplayModeProcessor {
 public:
-  SnakeProcessor(int ledStripSize, CHSV* colors, int colorCount) : DisplayModeProcessor(ledStripSize), colorCount(colorCount) {
+  SnakeProcessor(int ledStripSize) : DisplayModeProcessor(ledStripSize) {
     this->colors = colors;
     snakeLength = 0;
     currentColor = 0;
+    colorCount = 0;
+    colors = new CHSV[colorCount];
+  }
+
+  void addColor(CHSV color) {
+    CHSV* temp = new CHSV[colorCount + 1];
+    for (int i = 0; i < colorCount; i++) {
+      temp[i] = colors[i];
+    }
+    temp[colorCount] = color;
+    colorCount++;
+    delete [] colors;
+    colors = temp;
   }
 
 protected:
@@ -33,7 +46,7 @@ protected:
   }
 
 private:
-  const int colorCount;
+  int colorCount;
 
   CHSV* colors;
   int snakeLength;
