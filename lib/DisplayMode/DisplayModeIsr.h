@@ -1,14 +1,12 @@
 #ifndef __INC_LEDBOW_DISPLAYMODEISR_H
 #define __INC_LEDBOW_DISPLAYMODEISR_H
 
-#include <DisplayMode.h>
-
 class DisplayModeIsr {
 public:
   DisplayModeIsr() {
     interrupted = false;
     lastInterruptTime = 0;
-    mode = NONE;
+    mode = 0;
   }
 
   void onInterrupt(unsigned long interruptTime) {
@@ -18,10 +16,10 @@ public:
     }
   }
 
-  DisplayMode currentMode() {
+  int currentMode(int modeCount) {
     if (interrupted) {
       interrupted = false;
-      mode++;
+      mode = (mode + 1) % modeCount;
     }
     return mode;
   }
@@ -30,7 +28,7 @@ public:
 private:
   volatile bool interrupted;
   volatile unsigned long lastInterruptTime;
-  DisplayMode mode;
+  int mode;
 };
 
 #endif

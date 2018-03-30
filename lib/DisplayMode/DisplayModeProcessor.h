@@ -1,7 +1,6 @@
 #ifndef __INC_LEDBOW_DISPLAYMODEPROCESSOR_H
 #define __INC_LEDBOW_DISPLAYMODEPROCESSOR_H
 
-#include <DisplayMode.h>
 #include <FastLED.h>
 
 class DisplayModeProcessor {

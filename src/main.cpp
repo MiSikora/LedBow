@@ -1,4 +1,3 @@
-#include <DisplayModeIsr.h>
 #include <DisplayModeSelector.h>
 #include <SingleColorProcessor.h>
 #include <RainbowProcessor.h>
@@ -12,11 +11,10 @@
 #define NUM_LEDS 31
 
 CRGB leds[NUM_LEDS];
-DisplayModeIsr modeIsr = DisplayModeIsr();
 DisplayModeSelector modeSelector = DisplayModeSelector();
 
 void onInterrupt() {
-  modeIsr.onInterrupt(millis());
+  modeSelector.onInterrupt(millis());
 }
 
 void setup() {
@@ -34,23 +32,22 @@ void setup() {
   CHSV white = CHSV(0, 0, 255);
   CHSV snakeColors[] = { red, yellow, green, cyan, blue, violet };
 
-  modeSelector.addProcessor(NONE, new SingleColorProcessor(NUM_LEDS, black));
-  modeSelector.addProcessor(RED, new SingleColorProcessor(NUM_LEDS, red));
-  modeSelector.addProcessor(GREEN, new SingleColorProcessor(NUM_LEDS, green));
-  modeSelector.addProcessor(BLUE, new SingleColorProcessor(NUM_LEDS, blue));
-  modeSelector.addProcessor(VIOLET, new SingleColorProcessor(NUM_LEDS, violet));
-  modeSelector.addProcessor(YELLOW, new SingleColorProcessor(NUM_LEDS, yellow));
-  modeSelector.addProcessor(CYAN, new SingleColorProcessor(NUM_LEDS, cyan));
-  modeSelector.addProcessor(WHITE, new SingleColorProcessor(NUM_LEDS, white));
-  modeSelector.addProcessor(RAINBOW, new RainbowProcessor(NUM_LEDS, 0, 255));
-  modeSelector.addProcessor(FOUNTAIN, new FountainProcessor(NUM_LEDS, 2, green, violet));
-  modeSelector.addProcessor(NEON, new NeonProcessor(NUM_LEDS, 2, blue.h, 120));
-  modeSelector.addProcessor(SNAKE, new SnakeProcessor(NUM_LEDS, snakeColors, 6));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, black));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, red));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, green));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, blue));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, violet));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, yellow));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, cyan));
+  modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, white));
+  modeSelector.addProcessor(new RainbowProcessor(NUM_LEDS, 0, 255));
+  modeSelector.addProcessor(new FountainProcessor(NUM_LEDS, 2, green, violet));
+  modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, blue.h, 120));
+  modeSelector.addProcessor(new SnakeProcessor(NUM_LEDS, snakeColors, 6));
 }
 
 void loop() {
-  DisplayMode mode = modeIsr.currentMode();
-  DisplayModeProcessor* processor = modeSelector.selectProcessor(mode);
+  DisplayModeProcessor* processor = modeSelector.selectProcessor();
   unsigned long sleepTime = processor->applyProcessor(leds);
   FastLED.show();
   delay(sleepTime);

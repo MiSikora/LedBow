@@ -1,26 +1,41 @@
 #ifndef __INC_LEDBOW_DISPLAYMODESELECTOR_H
 #define __INC_LEDBOW_DISPLAYMODESELECTOR_H
 
-#include <DisplayMode.h>
+#include <DisplayModeIsr.h>
 #include <DisplayModeProcessor.h>
-#include <Arduino.h>
 
 class DisplayModeSelector {
 public:
-  DisplayModeSelector() {}
-
-  void addProcessor(DisplayMode mode, DisplayModeProcessor* processor) {
-    int index = static_cast<int>(mode);
-    processors[index] = processor;
+  DisplayModeSelector() {
+    modeIsr = DisplayModeIsr();
+    processors = new DisplayModeProcessor*[processorCount];
+    processorCount = 0;
   }
 
-  DisplayModeProcessor* selectProcessor(DisplayMode mode) {
-    int index = static_cast<int>(mode);
+  void addProcessor(DisplayModeProcessor* processor) {
+    DisplayModeProcessor** temp = new DisplayModeProcessor*[processorCount + 1];
+    for (int i = 0; i < (processorCount); i++) {
+      temp[i] = processors[i];
+    }
+    temp[processorCount] = processor;
+    processorCount++;
+    delete [] processors;
+    processors = temp;
+  }
+
+  DisplayModeProcessor* selectProcessor() {
+    int index = modeIsr.currentMode(processorCount);
     return processors[index];
   }
 
+  void onInterrupt(unsigned long interruptTime) {
+    modeIsr.onInterrupt(interruptTime);
+  }
+
 private:
-  DisplayModeProcessor* processors[FINAL_DISPLAY_MODE_ENTRY];
+  DisplayModeIsr modeIsr;
+  DisplayModeProcessor** processors;
+  int processorCount;
 };
 
 #endif
