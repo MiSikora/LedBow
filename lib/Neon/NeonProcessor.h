@@ -5,7 +5,7 @@
 
 class NeonProcessor : public DisplayModeProcessor {
 public:
-  NeonProcessor(int ledStripSize, int cycleCount, uint8_t hue, uint8_t sat) : DisplayModeProcessor(ledStripSize) {
+  NeonProcessor(int ledStripSize, int cycleCount, unsigned long delay, uint8_t hue, uint8_t sat) : DisplayModeProcessor(ledStripSize), delay(delay) {
     neon = new CHSV[ledStripSize];
     int range = ledStripSize / cycleCount;
     int increment = 180 / range;
@@ -29,10 +29,12 @@ protected:
   }
 
   unsigned long loopDelay() {
-    return 40;
+    return delay;
   }
 
 private:
+  const unsigned long delay;
+
   CHSV* neon;
   int currentIndex;
 };

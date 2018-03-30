@@ -6,7 +6,6 @@
 class SnakeProcessor : public DisplayModeProcessor {
 public:
   SnakeProcessor(int ledStripSize) : DisplayModeProcessor(ledStripSize) {
-    this->colors = colors;
     snakeLength = 0;
     currentColor = 0;
     colorCount = 0;

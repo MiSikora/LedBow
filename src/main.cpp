@@ -8,7 +8,7 @@
 #define BUTTON_PIN 2
 
 #define LED_PIN 6
-#define NUM_LEDS 31
+#define NUM_LEDS 30
 
 CRGB leds[NUM_LEDS];
 DisplayModeSelector modeSelector = DisplayModeSelector();
@@ -41,7 +41,9 @@ void setup() {
   modeSelector.addProcessor(new SingleColorProcessor(NUM_LEDS, white));
   modeSelector.addProcessor(new RainbowProcessor(NUM_LEDS, 0, 255));
   modeSelector.addProcessor(new FountainProcessor(NUM_LEDS, 2, green, violet));
-  modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, blue.h, 120));
+  modeSelector.addProcessor(new FountainProcessor(NUM_LEDS, 3, green, black));
+  modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, 40, blue.h, 120));
+  modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, 20, blue.h, 120));
 
   SnakeProcessor* snakeProcessor = new SnakeProcessor(NUM_LEDS);
   snakeProcessor->addColor(red);
