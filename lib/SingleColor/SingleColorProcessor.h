@@ -5,7 +5,8 @@
 
 class SingleColorProcessor : public DisplayModeProcessor {
 public:
-  SingleColorProcessor(int ledStripSize, CHSV color) : DisplayModeProcessor(ledStripSize), color(color) {}
+  SingleColorProcessor(int ledStripSize, CHSV color)
+      : DisplayModeProcessor(ledStripSize), color(color) {}
 
 protected:
   void processLeds(CRGB leds[]) {

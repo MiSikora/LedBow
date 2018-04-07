@@ -7,7 +7,8 @@ class Fountain {
 public:
   const int length;
 
-  Fountain(int length, CHSV firstColor, CHSV secondColor) : length(length), firstColor(firstColor), secondColor(secondColor) {
+  Fountain(int length, CHSV firstColor, CHSV secondColor)
+      : length(length), firstColor(firstColor), secondColor(secondColor) {
     background = new CHSV[length];
     for (int i = 0; i < length; i++) {
       background[i] = secondColor;
@@ -38,20 +39,20 @@ public:
       rightBoundry--;
       resetSeeds();
     }
-    if (length % 2 == 0 && firstSeed == leftBoundry && secondSeed == rightBoundry) {
+    if (length % 2 == 0 && firstSeed == leftBoundry &&
+        secondSeed == rightBoundry) {
       background[leftBoundry] = firstColor;
       background[rightBoundry] = firstColor;
       readyToReset = true;
-    } else if (length % 2 != 0 && firstSeed == rightBoundry && secondSeed == leftBoundry) {
+    } else if (length % 2 != 0 && firstSeed == rightBoundry &&
+               secondSeed == leftBoundry) {
       background[leftBoundry] = firstColor;
       background[rightBoundry] = firstColor;
       readyToReset = true;
     }
   }
 
-  bool isReadyToReset() {
-    return readyToReset;
-  }
+  bool isReadyToReset() { return readyToReset; }
 
   void reset() {
     resetSeeds();
@@ -68,7 +69,7 @@ private:
   int rightBoundry;
   CHSV firstColor;
   CHSV secondColor;
-  CHSV* background;
+  CHSV *background;
   bool readyToReset;
   bool newCycle;
 

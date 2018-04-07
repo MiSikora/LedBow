@@ -5,7 +5,7 @@
 
 class DisplayModeProcessor {
 public:
-  DisplayModeProcessor(int ledStripSize) : ledStripSize(ledStripSize) {};
+  DisplayModeProcessor(int ledStripSize) : ledStripSize(ledStripSize){};
 
   unsigned long applyProcessor(CRGB leds[]) {
     processLeds(leds);
@@ -15,9 +15,7 @@ public:
 protected:
   const int ledStripSize;
 
-  virtual unsigned long loopDelay() {
-    return 0;
-  }
+  virtual unsigned long loopDelay() { return 0; }
 
   virtual void processLeds(CRGB leds[]) = 0;
 };

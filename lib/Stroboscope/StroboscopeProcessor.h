@@ -13,13 +13,13 @@ public:
   }
 
   void addColor(CHSV color) {
-    CHSV* temp = new CHSV[colorCount + 1];
+    CHSV *temp = new CHSV[colorCount + 1];
     for (int i = 0; i < colorCount; i++) {
       temp[i] = colors[i];
     }
     temp[colorCount] = color;
     colorCount++;
-    delete [] colors;
+    delete[] colors;
     colors = temp;
   }
 
@@ -37,21 +37,17 @@ protected:
     blackout = !blackout;
   }
 
-  unsigned long loopDelay() {
-    return 80;
-  }
+  unsigned long loopDelay() { return 80; }
 
 private:
   const CHSV black = CHSV(0, 0, 0);
 
   bool blackout;
   int colorCount;
-  CHSV* colors;
+  CHSV *colors;
   int currentColor;
 
-  int nextColor() {
-    return (currentColor + 1) % colorCount;
-  }
+  int nextColor() { return (currentColor + 1) % colorCount; }
 };
 
 #endif

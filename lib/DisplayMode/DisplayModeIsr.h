@@ -24,7 +24,6 @@ public:
     return mode;
   }
 
-
 private:
   volatile bool interrupted;
   volatile unsigned long lastInterruptTime;

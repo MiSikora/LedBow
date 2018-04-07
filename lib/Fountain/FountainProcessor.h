@@ -6,8 +6,10 @@
 
 class FountainProcessor : public DisplayModeProcessor {
 public:
-  FountainProcessor(int ledStripSize, int fountainCount, CHSV firstColor, CHSV secondColor) : DisplayModeProcessor(ledStripSize), fountainCount(fountainCount) {
-    fountains = new Fountain*[fountainCount];
+  FountainProcessor(int ledStripSize, int fountainCount, CHSV firstColor,
+                    CHSV secondColor)
+      : DisplayModeProcessor(ledStripSize), fountainCount(fountainCount) {
+    fountains = new Fountain *[fountainCount];
     int length = ledStripSize / fountainCount;
     int lengthRemainder = ledStripSize % fountainCount;
     for (int i = 0; i < fountainCount; i++) {
@@ -38,14 +40,12 @@ protected:
     }
   }
 
-  unsigned long loopDelay() {
-    return 40;
-  }
+  unsigned long loopDelay() { return 40; }
 
 private:
   const int fountainCount;
 
-  Fountain** fountains;
+  Fountain **fountains;
 };
 
 #endif

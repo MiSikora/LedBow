@@ -8,22 +8,23 @@ class DisplayModeSelector {
 public:
   DisplayModeSelector() {
     modeIsr = DisplayModeIsr();
-    processors = new DisplayModeProcessor*[processorCount];
+    processors = new DisplayModeProcessor *[processorCount];
     processorCount = 0;
   }
 
-  void addProcessor(DisplayModeProcessor* processor) {
-    DisplayModeProcessor** temp = new DisplayModeProcessor*[processorCount + 1];
+  void addProcessor(DisplayModeProcessor *processor) {
+    DisplayModeProcessor **temp =
+        new DisplayModeProcessor *[processorCount + 1];
     for (int i = 0; i < processorCount; i++) {
       temp[i] = processors[i];
     }
     temp[processorCount] = processor;
     processorCount++;
-    delete [] processors;
+    delete[] processors;
     processors = temp;
   }
 
-  DisplayModeProcessor* selectProcessor() {
+  DisplayModeProcessor *selectProcessor() {
     int index = modeIsr.currentMode(processorCount);
     return processors[index];
   }
@@ -34,7 +35,7 @@ public:
 
 private:
   DisplayModeIsr modeIsr;
-  DisplayModeProcessor** processors;
+  DisplayModeProcessor **processors;
   int processorCount;
 };
 

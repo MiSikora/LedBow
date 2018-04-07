@@ -13,13 +13,13 @@ public:
   }
 
   void addColor(CHSV color) {
-    CHSV* temp = new CHSV[colorCount + 1];
+    CHSV *temp = new CHSV[colorCount + 1];
     for (int i = 0; i < colorCount; i++) {
       temp[i] = colors[i];
     }
     temp[colorCount] = color;
     colorCount++;
-    delete [] colors;
+    delete[] colors;
     colors = temp;
   }
 
@@ -40,20 +40,16 @@ protected:
     }
   }
 
-  unsigned long loopDelay() {
-    return 60;
-  }
+  unsigned long loopDelay() { return 60; }
 
 private:
   int colorCount;
 
-  CHSV* colors;
+  CHSV *colors;
   int snakeLength;
   int currentColor;
 
-  int nextColor() {
-    return (currentColor + 1) % colorCount;
-  }
+  int nextColor() { return (currentColor + 1) % colorCount; }
 };
 
 #endif

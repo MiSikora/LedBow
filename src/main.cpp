@@ -1,8 +1,8 @@
 #include <DisplayModeSelector.h>
-#include <SingleColorProcessor.h>
-#include <RainbowProcessor.h>
 #include <FountainProcessor.h>
 #include <NeonProcessor.h>
+#include <RainbowProcessor.h>
+#include <SingleColorProcessor.h>
 #include <SnakeProcessor.h>
 #include <StroboscopeProcessor.h>
 
@@ -14,9 +14,7 @@
 CRGB leds[NUM_LEDS];
 DisplayModeSelector modeSelector = DisplayModeSelector();
 
-void onInterrupt() {
-  modeSelector.onInterrupt(millis());
-}
+void onInterrupt() { modeSelector.onInterrupt(millis()); }
 
 void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
@@ -46,24 +44,24 @@ void setup() {
   modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, 40, blue.h, 120));
   modeSelector.addProcessor(new NeonProcessor(NUM_LEDS, 2, 20, blue.h, 120));
 
-  SnakeProcessor* snake = new SnakeProcessor(NUM_LEDS);
+  SnakeProcessor *snake = new SnakeProcessor(NUM_LEDS);
   snake->addColor(red);
   snake->addColor(yellow);
   snake->addColor(green);
   snake->addColor(cyan);
   snake->addColor(blue);
   snake->addColor(violet);
-  modeSelector.addProcessor(static_cast<DisplayModeProcessor*>(snake));
+  modeSelector.addProcessor(static_cast<DisplayModeProcessor *>(snake));
 
-  StroboscopeProcessor* stroboscope = new StroboscopeProcessor(NUM_LEDS);
+  StroboscopeProcessor *stroboscope = new StroboscopeProcessor(NUM_LEDS);
   stroboscope->addColor(red);
   stroboscope->addColor(green);
   stroboscope->addColor(blue);
-  modeSelector.addProcessor(static_cast<DisplayModeProcessor*>(stroboscope));
+  modeSelector.addProcessor(static_cast<DisplayModeProcessor *>(stroboscope));
 }
 
 void loop() {
-  DisplayModeProcessor* processor = modeSelector.selectProcessor();
+  DisplayModeProcessor *processor = modeSelector.selectProcessor();
   unsigned long sleepTime = processor->applyProcessor(leds);
   FastLED.show();
   delay(sleepTime);
