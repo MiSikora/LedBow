@@ -41,13 +41,15 @@ protected:
 
 private:
   const CHSV black = CHSV(0, 0, 0);
-
   bool blackout;
   int colorCount;
   CHSV *colors;
   int currentColor;
 
-  int nextColor() { return (currentColor + 1) % colorCount; }
+  int nextColor() {
+    currentColor = (currentColor + 1) % colorCount;
+    return currentColor; 
+  }
 };
 
 #endif
